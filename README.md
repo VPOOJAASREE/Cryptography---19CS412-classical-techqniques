@@ -18,7 +18,8 @@ To encrypt and decrypt the given message by using Ceaser Cipher encryption algor
 ## PROGRAM:
 DEVELOPED BY : V. POOJAA SREE
 REGISTER NO : 212223040147
-'''
+
+```
 #include <stdio.h> 
 #include <string.h> 
  
@@ -58,7 +59,7 @@ void main()
         printf("%c",plain[i]); 
     }    
 }
-'''
+```
 
 ## OUTPUT:
  ![EX1 output](https://github.com/user-attachments/assets/c297b6c9-3eb8-48b4-8b91-9eb1a91e6f7b)
