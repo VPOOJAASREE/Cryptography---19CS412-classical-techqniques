@@ -8,11 +8,11 @@ To encrypt and decrypt the given message by using Ceaser Cipher encryption algor
 
 ## ALGORITHM:
 
-1. Input the plaintext and key: 
-2. Loop through each character in the plaintext: 
-3. Check if the character is a letter: 
-4. Shift the character: 
-5. Print the resulting ciphertext: 
+1. Input the plaintext and key.
+2. Loop through each character in the plaintext. 
+3. Check if the character is a letter. 
+4. Shift the character.
+5. Print the resulting ciphertext. 
 
 
 ## PROGRAM:
