@@ -1,5 +1,7 @@
 # Cryptography---19CS412-classical-techqniques
-# Caeser Cipher
+# EX:1 Caeser Cipher
+DATE: 
+
 Caeser Cipher using with different key values
 
 # AIM:
@@ -67,7 +69,7 @@ void main()
 
 
 ## RESULT:
-The program is executed and verified successfully
+The program is executed and verified successfully.
 
 ---------------------------------
 
