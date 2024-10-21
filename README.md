@@ -221,151 +221,187 @@ The program is executed and verified successfully.
 
 -------------------------------------------------
 
-# Vigenere Cipher
+# Cryptography---19CS412-classical-techqniques
+# EX: 4 Vigenere Cipher
+# DATE: 
 Vigenere Cipher using with different key values
 
 # AIM:
 
 To develop a simple C program to implement Vigenere Cipher.
 
-## DESIGN STEPS:
+## ALGORITHM:
 
-### Step 1:
-
-Design of Vigenere Cipher algorithnm 
-
-### Step 2:
-
-Implementation using C or pyhton code
-
-### Step 3:
-
-Testing algorithm with different key values. 
-ALGORITHM DESCRIPTION:
-The Vigenere cipher is a method of encrypting alphabetic text by using a series of different Caesar ciphers based on the letters of a keyword. It is a simple form of polyalphabetic substitution.To encrypt, a table of alphabets can be used, termed a Vigenere square, or Vigenere table. It consists of the alphabet written out 26 times in different rows, each alphabet shifted cyclically to the left compared to the previous alphabet, corresponding to the 26 possible Caesar ciphers. At different points in the encryption process, the cipher uses a different alphabet from one of the rows used. The alphabet at each point depends on a repeating keyword.
-
-
+1. Choose the Keyword. 
+2. Align Plaintext with Keyword.
+3. Convert Letters to Numbers.
+4. Shift Plaintext by Corresponding Keyword Character. 
+5. Convert the Ciphertext Numbers Back to Letters. 
 
 ## PROGRAM:
-PROGRAM:
-#include<stdio.h> #include<string.h>
-//FunctiontoperformVigenereencryption voidvigenereEncrypt(char*text,constchar*key){ inttextLen= strlen(text);
-intkeyLen=strlen(key); for(inti =0;i< textLen;i++){ charc =text[i]; if(c>='A'&&c<='Z'){
-//Encryptuppercaseletters
-text[i]=((c-'A'+key[i%keyLen]-'A')%26)+'A';
-}else if(c>='a'&&c<='z'){
-//Encryptlowercaseletters
-text[i]=((c-'a'+key[i%keyLen]-'A')%26)+'a';
-}
-}
-}
-//FunctiontoperformVigeneredecryption voidvigenereDecrypt(char*text,constchar*key){ inttextLen= strlen(text);
-intkeyLen=strlen(key);
+DEVELOPED BY : V. POOJAA SREE
+REGISTER NO : 212223040147
 
-for(inti =0;i< textLen;i++){ charc =text[i]; if(c>='A'&&c<='Z'){
-//Decryptuppercaseletters
- 
-text[i]=((c-'A'-(key[i% keyLen]-'A') +26) %26)+ 'A';
-}else if(c>='a'&&c<='z'){
-//Decryptlowercaseletters
-text[i]=((c-'a'-(key[i% keyLen]-'A') +26) %26)+ 'a';
-}
-}
-}
-intmain(){
-constchar *key="KEY";//Replacewithyourdesired key
-char message[]= "Thisisasecretmessage.";//Replace withyourmessage
-//Encrypt themessage vigenereEncrypt(message,key); printf("EncryptedMessage:%s\n",message);
-//Decrypt themessage backtotheoriginal vigenereDecrypt(message,key); printf("DecryptedMessage:%s\n",message); Return 0;
+```
+#include <stdio.h>  
+#include<stdlib.h>  
+#include <ctype.h>  
+#include <string.h>  
+void encipher();  
+void decipher();  
+void main()  
+{  
+int choice;  
+while(1)  
+{  
+printf("\n1. Encrypt Text");  
+printf("\t2. Decrypt Text");  
+printf("\t3. Exit");  
+printf("\n\nEnter Your Choice : ");  
+scanf("%d",&choice);  
+if(choice == 3)  
+exit(0);  
+else if(choice == 1)  
+encipher();  
+else if(choice == 2)  
+decipher();  
+else  
+printf("Please Enter Valid Option.");  
+}  
+}  
+void encipher()  
+{  
+unsigned int i,j;  
+char input[50],key[10];  
+printf("\n\nEnter Plain Text: ");  
+scanf("%s",input);  
+printf("\nEnter Key Value: ");  
+scanf("%s",key);  
+printf("\nResultant Cipher Text: ");  
+for(i=0,j=0;i<strlen(input);i++,j++)  
+{  
+if(j>=strlen(key))  
+{  
+j=0;  
+}  
+printf("%c",65+(((toupper(input[i])-65)+(toupper(key[j])-65))%26));  
+}  
+}  
+void decipher()  
+{  
+unsigned int i,j;  
+char input[50],key[10];  
+int value;  
+printf("\n\nEnter Cipher Text: ");  
+scanf("%s",input);  
+printf("\n\nEnter the key value: ");  
+scanf("%s",key);  
+for(i=0,j=0;i<strlen(input);i++,j++)  
+{  
+if(j>=strlen(key))  
+{  
+j=0;  
+}  
+value = (toupper(input[i])-64)-(toupper(key[j])-64);  
+if( value < 0)  
+{  
+value = value * -1;  
+}  
+printf("%c",65 + (value % 26));  
+}  
+}  
+
+```
 
 ## OUTPUT:
-OUTPUT :
 
-Simulating Vigenere Cipher
+![op](https://github.com/user-attachments/assets/bccd4432-d218-4261-92dd-b38d96727442)
 
-
-Input Message : SecurityLaboratory
-Encrypted Message : NMIYEMKCNIQVVROWXC Decrypted Message : SECURITYLABORATORY
 ## RESULT:
-The program is executed successfully
+The program is executed and verified successfully.
 
 -----------------------------------------------------------------------
 
-# Rail Fence Cipher
-Rail Fence Cipher using with different key values
+
+# Cryptography---19CS412-classical-techqniques
+# EX: 5 Rail Fence Cipher
+# DATE: 
 
 # AIM:
 
 To develop a simple C program to implement Rail Fence Cipher.
 
-## DESIGN STEPS:
+## ALGORITHM:
 
-### Step 1:
+1. Choose the Number of Rails.
+2. Write the Plaintext in a Zigzag Pattern. 
+3. Read Each Rail Row-by-Row.
+4. Combine the Letters from All Rails. 
+5. Output the Ciphertext. 
 
-Design of Rail Fence Cipher algorithnm 
-
-### Step 2:
-
-Implementation using C or pyhton code
-
-### Step 3:
-
-Testing algorithm with different key values. 
-ALGORITHM DESCRIPTION:
-In the rail fence cipher, the plaintext is written downwards and diagonally on successive "rails" of an imaginary fence, then moving up when we reach the bottom rail. When we reach the top rail, the message is written downwards again until the whole plaintext is written out. The message is then read off in rows.
 
 ## PROGRAM:
+DEVELOPED BY : V. POOJAA SREE
+REGISTER NO : 212223040147
 
-PROGRAM:
-#include<stdio.h> #include<string.h> #include<stdlib.h> main()
+```
+#include<stdio.h>
+#include<string.h>
+
+int main()
 {
-int i,j,len,rails,count,code[100][1000]; char str[1000];
-printf("Enter a Secret Message\n"); gets(str);
-len=strlen(str);
-printf("Enter number of rails\n"); scanf("%d",&rails); for(i=0;i<rails;i++)
-{
-for(j=0;j<len;j++)
-{
-code[i][j]=0;
-}
-}
-count=0; j=0;
-while(j<len)
-{
-if(count%2==0)
-{
-for(i=0;i<rails;i++)
-{
-//strcpy(code[i][j],str[j]);
-code[i][j]=(int)str[j]; j++;
+    int i, j, k, l;
+    char a[20], c[20], d[20];
+
+    printf("\n\t\t RAIL FENCE TECHNIQUE");
+    printf("\n\nEnter the input string : ");
+    l = strlen(a);
+
+    for(i = 0, j = 0; i < l; i++)
+    {
+        if(i % 2 == 0)
+            c[j++] = a[i];
+    }
+    for(i = 0; i < l; i++)
+    {
+        if(i % 2 == 1)
+            c[j++] = a[i];
+    }
+    c[j] = '\0';
+
+    printf("\nCipher text after applying rail fence : ");
+    printf("%s", c);
+
+    if(l % 2 == 0)
+        k = l / 2;
+    else
+        k = (l / 2) + 1;
+
+    for(i = 0, j = 0; i < k; i++)
+    {
+        d[j] = c[i];
+        j = j + 2;
+    }
+    for(i = k, j = 1; i < l; i++)
+    {
+        d[j] = c[i];
+        j = j + 2;
+    }
+    d[l] = '\0';
+
+    printf("\nText after decryption : ");
+    printf("%s", d);
+
+    return 0;
 }
 
-}
-else
-{
- 
-for(i=rails-2;i>0;i--)
-{
-code[i][j]=(int)str[j]; j++;
-}
-}
+```
 
-count++;
-}
 
-for(i=0;i<rails;i++)
-{
-for(j=0;j<len;j++)
-{
-if(code[i][j]!=0) printf("%c",code[i][j]);
-}
-}
-printf("\n");
-}
 ## OUTPUT:
-OUTPUT:
-Enter a Secret Message wearediscovered
-Enter number of rails 2
-waeicvrderdsoee
+
+![op](https://github.com/user-attachments/assets/bd8bca9c-7f9d-41b3-b203-e5dddc3dc95c)
+
+
 ## RESULT:
-The program is executed successfully
+The program is executed and verifed successfully.
