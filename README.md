@@ -511,7 +511,7 @@ The program is executed and verified successfully.
 
 -----------------------------------------------------
 
-# EX-7 Implement DES Encryption and Decryption
+# EX-8 ADVANCED-ENCRYPTION-STANDARD DES-ALGORITHM 
 # DATE:
 
 ## Aim:
