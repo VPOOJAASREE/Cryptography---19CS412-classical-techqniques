@@ -1,83 +1,100 @@
-# Cryptography---19CS412-classical-techqniques
-# Caeser Cipher
-Caeser Cipher using with different key values
+# EX-7 Implement DES Encryption and Decryption
+# DATE:
+## Aim:
+   Implementation of Pseudorandom Number Generation Using Standard library.
 
-# AIM:
+## ALGORITHM: 
+1. Get the input and convert it as block cipher.
+2. The plain text is initially permuted and split into 2 equal halves.
+3. It undergoes 16 rounds of encryption.
+4. These 2 halves are finally rejoined to give cipher text.
+5. The same happens in decryption process but in an inverse manner
 
-To encrypt and decrypt the given message by using Ceaser Cipher encryption algorithm.
+## PROGRAM: 
 
+DEVELOPED BY: V. POOJAA SREE
 
-## DESIGN STEPS:
+REGISTER NO.: 212223040147
 
-### Step 1:
-
-Design of Caeser Cipher algorithnm 
-
-### Step 2:
-
-Implementation using C or pyhton code
-
-### Step 3:
-
-1.	In Ceaser Cipher each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.
-2.	For example, with a left shift of 3, D would be replaced by A, E would become B, and so on.
-3.	The encryption can also be represented using modular arithmetic by first transforming the letters into numbers, according to the   
-    scheme, A = 0, B = 1, Z = 25.
-4.	Encryption of a letter x by a shift n can be described mathematically as,
-                       En(x) = (x + n) mod26
-5.	Decryption is performed similarly,
-                       Dn (x)=(x - n) mod26
-
-
-## PROGRAM:
-PROGRAM:
-CaearCipher.
+```
 #include <stdio.h>
-#include <stdlib.h>
- 
-// Function to perform Caesar Cipher encryption void caesarEncrypt(char *text, int key) {
-   for (int i = 0; text[i] != '\0'; i++) { char c = text[i];
-// Check if the character is an uppercase letter 
-    if (c >= 'A' && c <= 'Z') {
-    text[i] = ((c - 'A' + key) % 26 + 26) % 26 + 'A';
+#include <string.h>
+
+// Function to perform a simple XOR-based encryption
+void encrypt(char *message, char *key, char *encryptedMessage, int messageLength) {
+    int keyLength = strlen(key);
+
+    for (int i = 0; i < messageLength; i++) {
+        // Encrypt by XORing message byte with key byte
+        encryptedMessage[i] = message[i] ^ key[i % keyLength];
     }
-// Check if the character is a lowercase letter
-    else if (c >= 'a' && c <= 'z') {
-        text[i] = ((c - 'a' + key) % 26 + 26) % 26 + 'a';
-    }
-// Ignore non-alphabetic characters
-    }
+    encryptedMessage[messageLength] = '\0';  // Null-terminate the encrypted message
 }
 
-// Function to perform Caesar Cipher decryption 
-void caesarDecrypt(char *text, int key) {
-// Decryption is the same as encryption with a negative key 
-caesarEncrypt(text, -key);
+// Function to perform decryption (XOR again with the same key)
+void decrypt(char *encryptedMessage, char *key, char *decryptedMessage, int messageLength) {
+    int keyLength = strlen(key);
+
+    for (int i = 0; i < messageLength; i++) {
+        // Decrypt by XORing encrypted byte with key byte
+        decryptedMessage[i] = encryptedMessage[i] ^ key[i % keyLength];
+    }
+    decryptedMessage[messageLength] = '\0';  // Null-terminate the decrypted message
 }
 
 int main() {
-char message[100]; // Declare a character array to store the message int key;
+    char message[100];
+    char key[100];
+    
+    printf("\n      *****Simulation of DES encryption and decryption*****\n\n");
+    // Get user input for the message
+    printf("Enter the message to encrypt: ");
+    fgets(message, sizeof(message), stdin);
+    message[strcspn(message, "\n")] = '\0';  // Remove newline character if present
 
-printf("Enter the message to encrypt: ");
-fgets(message, sizeof(message), stdin); // Read input from the user printf("Enter the Caesar Cipher key (an integer): ");
-scanf("%d", &key); // Read the key from the user
-// Encrypt the message using the Caesar Cipher caesarEncrypt(message, key); printf("Encrypted Message: %s", message);
-// Decrypt the message back to the original
- 
-caesarDecrypt(message, key); printf("Decrypted Message: %s", message); return 0;
+    // Get user input for the key
+    printf("Enter the encryption key: ");
+    fgets(key, sizeof(key), stdin);
+    key[strcspn(key, "\n")] = '\0';  // Remove newline character if present
+
+    int messageLength = strlen(message);
+    
+    // Buffers to hold encrypted and decrypted messages
+    char encryptedMessage[100];
+    char decryptedMessage[100];
+    
+    // Encrypt the message
+    encrypt(message, key, encryptedMessage, messageLength);
+    printf("Original Message: %s\n", message);
+    printf("Encrypted Message: ");
+    
+    // Print encrypted message in hex format
+    for (int i = 0; i < messageLength; i++) {
+        printf("%02X ", (unsigned char)encryptedMessage[i]);
+    }
+    printf("\n");
+    
+    // Decrypt the message
+    decrypt(encryptedMessage, key, decryptedMessage, messageLength);
+    printf("Decrypted Message: %s\n", decryptedMessage);
+    
+    return 0;
 }
 
+```
 
 ## OUTPUT:
-OUTPUT:
-Simulating Caesar Cipher
+
+![op](https://github.com/user-attachments/assets/27e3574a-870d-40c8-b176-6c7d6acc4af7)
+
+## RESULT: 
+The program is executed and verified successfully.
 
 
-Input : Anna University
-Encrypted Message : Dqqd Xqlyhuvlwb Decrypted Message : Anna University
 
-## RESULT:
-The program is executed successfully
+
+
+
 
 ---------------------------------
 
