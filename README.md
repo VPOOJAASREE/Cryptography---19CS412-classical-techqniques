@@ -417,7 +417,7 @@ The program is executed and verifed successfully.
 # EX-7 Implement DES Encryption and Decryption
 # DATE:
 
-## Aim:
+## AIM:
    Implementation of Pseudorandom Number Generation Using Standard library.
 
 ## ALGORITHM: 
@@ -514,7 +514,7 @@ The program is executed and verified successfully.
 # EX-8 ADVANCED-ENCRYPTION-STANDARD DES-ALGORITHM 
 # DATE:
 
-## Aim:
+## AIM:
 
   To use Advanced Encryption Standard (AES) Algorithm for a practical application like URL Encryption.
 
