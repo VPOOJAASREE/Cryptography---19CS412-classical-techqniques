@@ -990,3 +990,165 @@ publickeyA = modExp(g, privateKeyA, p);
 ## RESULT: 
 The program is executed and verified successfully.
 
+---------------------------------------------------
+
+# EX-13 MESSAGE AUTHENTICATION CODE(MAC)
+# DATE:
+
+## AIM: 
+To generate and verify a Message Authentication Code (MAC) for ensuring the integrity and authenticity of a message using a simple XOR operation.
+   
+## ALGORITHM: 
+1. Input the plaintext and key.
+2. Loop through each character in the plaintext.
+3. Check if the character is a letter.
+4. Shift the character.
+5. Print the resulting ciphertext.
+
+## PROGRAM: 
+
+DEVELOPED BY: V. POOJAA SREE
+
+REGISTER NO.: 212223040147
+
+```
+#include <stdio.h>
+#include <string.h>
+#define MAC_SIZE 32
+
+void computeMAC(const char *key, const char *message, char *mac) {
+    int key_len = strlen(key);
+    int msg_len = strlen(message);
+
+    for (int i = 0; i < MAC_SIZE; i++) {
+        mac[i] = key[i % key_len] ^ message[i % msg_len];
+    }
+    mac[MAC_SIZE] = '\0';
+}
+
+int main() {
+    char key[100], message[100];
+    char mac[MAC_SIZE + 1];
+    char receivedMAC[MAC_SIZE + 1];
+
+    printf("Enter the secret key: ");
+    scanf("%s", key);
+
+    printf("Enter the message: ");
+    scanf("%s", message);
+
+    computeMAC(key, message, mac);
+
+    printf("Computed MAC (in hex): ");
+    for (int i = 0; i < MAC_SIZE; i++) {
+        printf("%02x", (unsigned char)mac[i]);
+    }
+    printf("\n");
+
+    printf("Enter the received MAC (as hex): ");
+    for (int i = 0; i < MAC_SIZE; i++) {
+        scanf("%02hhx", &receivedMAC[i]);
+    }
+
+    if (memcmp(mac, receivedMAC, MAC_SIZE) == 0) {
+        printf("MAC verification successful. Message is authentic.\n");
+    } else {
+        printf("MAC verification failed. Message is not authentic.\n");
+    }
+
+    return 0;
+}
+
+
+```
+
+## OUTPUT:
+
+![op](https://github.com/user-attachments/assets/f4980c24-8620-46d5-b5e9-bebcdd2c6df8)
+
+
+## RESULT: 
+The program is executed and verified successfully.
+
+---------------------------------------------------------------
+
+# EX-14 HASH
+# DATE:
+
+## AIM: 
+
+To generate a simple hash of a given message using a custom hash function.
+   
+## ALGORITHM: 
+
+1. Input a message from the user.
+2. Use a basic custom hash function that applies simple operations like XOR and addition on the characters of the message.
+3. Convert the resulting hash into a hexadecimal format.
+4. Display the computed hash to the user.
+5. Optionally verify the hash by recomputing it and comparing it with a received hash.
+
+## PROGRAM: 
+
+DEVELOPED BY: V. POOJAA SREE
+
+REGISTER NO.: 212223040147
+
+```
+#include <stdio.h>
+#include <string.h>
+
+// Function to compute a simple hash using XOR and addition
+void computeSimpleHash(const char *message, unsigned char *hash) {
+    unsigned char temp = 0;
+    for (int i = 0; message[i] != '\0'; i++) {
+        temp ^= message[i];  // XOR each character
+        temp += message[i];  // Add each character's value
+    }
+    *hash = temp;  // Store the result in the hash
+}
+
+int main() {
+    char message[256];  // Buffer for the input message
+    unsigned char hash; // Buffer for the hash (only 1 byte for simplicity)
+    char receivedHash[3]; // Buffer for input of received hash (in hex format)
+
+    // Step 1: Input the message
+    printf("Enter the message: ");
+    scanf("%s", message);
+
+    // Step 2: Compute the simple hash
+    computeSimpleHash(message, &hash);
+
+    // Step 3: Display the computed hash in hexadecimal format
+    printf("Computed Hash (in hex): %02x\n", hash);
+
+    // Step 4: Input the received hash
+    printf("Enter the received hash (in hex): ");
+    scanf("%s", receivedHash);
+
+    // Step 5: Convert received hash from hex string to an unsigned char
+    unsigned int receivedHashValue;
+    sscanf(receivedHash, "%02x", &receivedHashValue);
+
+    // Step 6: Compare the computed hash with the received hash
+    if (hash == receivedHashValue) {
+        printf("Hash verification successful. Message is unchanged.\n");
+    } else {
+        printf("Hash verification failed. Message has been altered.\n");
+    }
+
+    return 0;
+}
+
+```
+
+## OUTPUT:
+
+![op](https://github.com/user-attachments/assets/4c8555b5-11dc-4a85-b663-13155496dee1)
+
+
+## RESULT: 
+The program is executed and verified successfully.
+
+-------------------------------------------------------------
+
